@@ -37,6 +37,45 @@ To check if you have Apache Ant in your path, open a command prompt and type `an
 Apache Ant(TM) version 1.10.5 compiled on July 10 2018
 ```
 
+### N6REJ's Instructions...
+####Configuration
+Fork and clone the module of your choice.
+Clone dev in the parent folder of the module.
+Create a new pull request with your work.
+For example :
+```text
+cd C:\work\
+git clone --recursive https://github.com/neard/module-adminer.git
+git clone --recursive https://github.com/neard/dev.git
+cd module-adminer\
+```
+
+Directory structure example :
+```text
+[-] dev
+ | [-] build
+ |  |  | build-commons.xml 
+[-] neard-{bin|app|tool}-{name}
+ |  | build.xml
+ ```
+
+ <hr>
+Increment the build.release in the build.properties file. ( check previous version for proper r# )
+If you want you can change the build.path (default <i>was</i> "C:\neard-build" but now is "E:\\Development\\MY_PROJECTS\\neard-development\\neard-build").
+
+
+ ####There is currently an issue where you have put the new release ( such as https://github.com/N6REJ/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
+ "https://github.com/N6REJ/modules-untouched/tree/master/modules"/.properties file pointing to the new release.  
+ There has to be a better way to do this...
+Not doing this step will prevent you from creating the ant release.  I spent hours trying to figure this out.
+I think a better ant script could take this into consideration automatically.
+but idk how to build such a thing.
+<hr>
+Open a command prompt in your module folder and run the ant builder with  "ant release"
+
+Upload your release on a file hosting system like Sendspace. or your repo and create an issue asking for a merge.
+Create an issue on my Neard fork ( https://github.com/N6REJ/neard/issues ) repository to integrate your release.
+
 ## License
 
 LGPL-3.0. See `LICENSE` for more details.<br />
