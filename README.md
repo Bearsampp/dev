@@ -42,6 +42,7 @@ Apache Ant(TM) version 1.10.5 compiled on July 10 2018
 Fork and clone the module of your choice.
 Clone dev in the parent folder of the module.
 Create a new pull request with your work.
+
 For example :
 ```text
 cd C:\work\
@@ -49,6 +50,7 @@ git clone --recursive https://github.com/neard/module-adminer.git
 git clone --recursive https://github.com/neard/dev.git
 cd module-adminer\
 ```
+
 
 Directory structure example :
 ```text
@@ -61,21 +63,29 @@ Directory structure example :
 
  <hr>
 Increment the build.release in the build.properties file. ( check previous version for proper r# )
-If you want you can change the build.path (default <i>was</i> "C:\neard-build" but now is "E:\\Development\\MY_PROJECTS\\neard-development\\neard-build").
+If you want you can change the build.path in the build-commons.properties file By default it will be in the same folder tree as your current module.
 
+If the folder does not exist it will be created during build time.
 
- ####There is currently an issue where you have put the new release ( such as https://github.com/N6REJ/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
- "https://github.com/N6REJ/modules-untouched/tree/master/modules"/.properties file pointing to the new release.  
- There has to be a better way to do this...
+```Text
+# The build path (was default C:/neard-build)
+build.path = ../neard-build
+```
+![img.png](img.png)
+
+ <b>There is currently an issue where you have put the new release ( such as https://github.com/N6REJ/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
+ the corresponding *.properties file pointing to the new release.</b>
+
+ <i>There has to be a better way to do this...</i>
+
 Not doing this step will prevent you from creating the ant release.  I spent hours trying to figure this out.
 I think a better ant script could take this into consideration automatically.
 but idk how to build such a thing.
 <hr>
 Open a command prompt in your module folder and run the ant builder with  "ant release"
 
-Upload your release on a file hosting system like Sendspace. or your repo and create an issue asking for a merge.
-Create an issue on my Neard fork ( https://github.com/N6REJ/neard/issues ) repository to integrate your release.
-
+Create an issue on my Neard fork ( https://github.com/N6REJ/neard/issues ) repository with your files requesting a release or create a release on your fork and create a pr.
+<hr>
 ## License
 
 LGPL-3.0. See `LICENSE` for more details.<br />
