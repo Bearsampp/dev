@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.4.0 (22 Nov 21)
+* Changed to local installation of 7z for ease in maintenance
+* Changed to local build dir
+* Updated libs
+
 ## 5.3.0 (2020/12/13)
 
 * Switch to GitHub Actions (neard/neard#470)
