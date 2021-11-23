@@ -37,8 +37,9 @@ To check if you have Apache Ant in your path, open a command prompt and type `an
 Apache Ant(TM) version 1.10.5 compiled on July 10 2018
 ```
 
-### N6REJ's Instructions...
-####Configuration
+### Bear's Instructions...
+<hr>
+#### Configuration
 Fork and clone the module of your choice.
 Clone dev in the parent folder of the module.
 Create a new pull request with your work.
@@ -69,9 +70,10 @@ If the folder does not exist it will be created during build time.
 
 ```Text
 # The build path (was default C:/neard-build)
-build.path = ../neard-build
+build.path = ${project.basedir}/../neard-build
 ```
-![img.png](img.png)
+![image](https://user-images.githubusercontent.com/1850089/143039217-aae33c11-6a98-44f8-aa37-eb45153cfdf8.png)
+
 
  <b>There is currently an issue where you have put the new release ( such as https://github.com/N6REJ/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
  the corresponding *.properties file pointing to the new release.</b>
