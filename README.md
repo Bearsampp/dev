@@ -39,6 +39,7 @@ Apache Ant(TM) version 1.10.5 compiled on July 10 2018
 
 ### Bear's Instructions...
 <hr>
+
 #### Configuration
 Fork and clone the module of your choice.
 Clone dev in the parent folder of the module.
