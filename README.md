@@ -64,6 +64,7 @@ Directory structure example :
  ```
 
  <hr>
+ 
 Increment the build.release in the build.properties file. ( check previous version for proper r# )
 If you want you can change the build.path in the build-commons.properties file By default it will be in the same folder tree as your current module.
 
@@ -89,6 +90,7 @@ Open a command prompt in your module folder and run the ant builder with  "ant r
 
 Create an issue on my Neard fork ( https://github.com/N6REJ/neard/issues ) repository with your files requesting a release or create a release on your fork and create a pr.
 <hr>
+
 ## License
 
 LGPL-3.0. See `LICENSE` for more details.<br />
