@@ -1,10 +1,10 @@
-<p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://bearsampp.github.io/img/logo-devkit.png"></a></p>
+<p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://github.com/Bearsampp/.settings/blob/master/img/panda-logo.png"></a></p>
 <p align="center">bearsampp Development Kit</p>
 
 <p align="center">
   <a href="https://github.com/bearsampp/dev/releases/latest"><img src="https://img.shields.io/github/tag/bearsampp/dev.svg?style=flat-square" alt="Tag"></a>
-  <a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
-  <a href="https://www.paypal.me/crazyws"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
+  <a href="https://github.com/sponsors/N6REJ"><img src="https://img.shields.io/badge/sponsor-N6REJ-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
+  <a href="https://www.paypal.me/BearLeeAble"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
 </p>
 
 ## About
