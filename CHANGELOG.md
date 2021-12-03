@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.5 ( 03 Dec 21)
+* Finished renaming neard to "Bearsampp"
+* Updated logo to follow whats set in .settings
+* Fixed sponsor links
+
 ## 5.4.0 (22 Nov 21)
 * Changed to local installation of 7z for ease in maintenance
 * Changed to local build dir
