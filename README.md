@@ -94,4 +94,3 @@ Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/is
 ## License
 
 LGPL-3.0. See `LICENSE` for more details.<br />
-Icon credit to [Juliia Osadcha](https://www.iconfinder.com/iconsets/web-ui-3).
