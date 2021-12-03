@@ -8,7 +8,7 @@
 # Jetbrains
 /*.iml
 
-# Neard
+# bearsampp
 /.dev
 /bin
 /.idea/.gitignore

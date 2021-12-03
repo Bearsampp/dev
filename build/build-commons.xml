@@ -386,7 +386,7 @@
   <defaultexcludes add="**/.gitkeep"/>
   <defaultexcludes add="**/.project"/>
   <defaultexcludes add="**/.styleci.yml"/>
-  <defaultexcludes add="**/neard*.iml"/>
+  <defaultexcludes add="**/bearsampp*.iml"/>
 
   <!-- Properties -->
   <property environment="env"/>

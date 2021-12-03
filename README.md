@@ -1,16 +1,16 @@
-<p align="center"><a href="https://neard.io/doc/contribute" target="_blank"><img width="100" src="https://neard.io/img/logo-devkit.png"></a></p>
-<p align="center">Neard Development Kit</p>
+<p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://bearsampp.github.io/img/logo-devkit.png"></a></p>
+<p align="center">bearsampp Development Kit</p>
 
 <p align="center">
-  <a href="https://github.com/neard/dev/releases/latest"><img src="https://img.shields.io/github/tag/neard/dev.svg?style=flat-square" alt="Tag"></a>
+  <a href="https://github.com/bearsampp/dev/releases/latest"><img src="https://img.shields.io/github/tag/bearsampp/dev.svg?style=flat-square" alt="Tag"></a>
   <a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
   <a href="https://www.paypal.me/crazyws"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
 </p>
 
 ## About
 
-This a sub-repo of [Neard project](https://github.com/neard/neard) involving the Development Kit required for everyone who wants to contribute!<br />
-Issues must be reported on [Neard repository](https://github.com/neard/neard/issues).
+This a sub-repo of [Bearsampp project](https://github.com/bearsampp/bearsampp) involving the Development Kit required for everyone who wants to contribute!<br />
+Issues must be reported on [Bearsampp repository](https://github.com/bearsampp/bearsampp/issues).
 
 ## Requirements
 
@@ -48,8 +48,8 @@ Create a new pull request with your work.
 For example :
 ```text
 cd C:\work\
-git clone --recursive https://github.com/neard/module-adminer.git
-git clone --recursive https://github.com/neard/dev.git
+git clone --recursive https://github.com/bearsampp/module-adminer.git
+git clone --recursive https://github.com/bearsampp/dev.git
 cd module-adminer\
 ```
 
@@ -59,7 +59,7 @@ Directory structure example :
 [-] dev
  | [-] build
  |  |  | build-commons.xml 
-[-] neard-{bin|app|tool}-{name}
+[-] bearsampp-{bin|app|tool}-{name}
  |  | build.xml
  ```
 
@@ -71,13 +71,13 @@ If you want you can change the build.path in the build-commons.properties file B
 If the folder does not exist it will be created during build time.
 
 ```Text
-# The build path (was default C:/neard-build)
-build.path = ${project.basedir}/../neard-build
+# The build path (was default C:/bearsampp-build)
+build.path = ${project.basedir}/../bearsampp-build
 ```
 ![image](https://user-images.githubusercontent.com/1850089/143039217-aae33c11-6a98-44f8-aa37-eb45153cfdf8.png)
 
 
- <b>There is currently an issue where you have put the new release ( such as https://github.com/N6REJ/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
+ <b>There is currently an issue where you have put the new release ( such as https://github.com/bearsampp/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
  the corresponding *.properties file pointing to the new release.</b>
 
  <i>There has to be a better way to do this...</i>
@@ -88,7 +88,7 @@ but idk how to build such a thing.
 <hr>
 Open a command prompt in your module folder and run the ant builder with  "ant release"
 
-Create an issue on my Neard fork ( https://github.com/N6REJ/neard/issues ) repository with your files requesting a release or create a release on your fork and create a pr.
+Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/issues ) repository with your files requesting a release or create a release on your fork and create a pr.
 <hr>
 
 ## License
