@@ -1,4 +1,4 @@
-<p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://github.com/Bearsampp/.settings/blob/master/img/bearsampp-logo.png"></a></p>
+<p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://github.com/Bearsampp/.settings/blob/main/img/bearsampp-logo.png"></a></p>
 <p align="center">Bearsampp Development Kit</p>
 
 <p align="center">
