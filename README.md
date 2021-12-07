@@ -1,5 +1,5 @@
 <p align="center"><a href="https://bearsampp.github.io/doc/contribute" target="_blank"><img width="100" src="https://github.com/Bearsampp/.settings/blob/master/img/bearsampp-logo.png"></a></p>
-<p align="center">bearsampp Development Kit</p>
+<p align="center">Bearsampp Development Kit</p>
 
 <p align="center">
   <a href="https://github.com/bearsampp/dev/releases/latest"><img src="https://img.shields.io/github/tag/bearsampp/dev.svg?style=flat-square" alt="Tag"></a>
