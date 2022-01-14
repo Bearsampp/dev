@@ -110,8 +110,8 @@
       <copy todir="${bundle.tmp.build.path}/${bundle.name}${bundle.version}">
         <fileset dir="${bundle.path}" defaultexcludes="yes"/>
       </copy>
-      <echo message="Insert release version in ${bundle.tmp.build.path}/${bundle.name}${bundle.version}/bearsampp.conf..."/>
-      <copy file="${bundle.path}/bearsampp.conf" tofile="${bundle.tmp.build.path}/${bundle.name}${bundle.version}/bearsampp.conf" overwrite="true">
+      <echo message="Insert release version in ${bundle.tmp.build.path}/${bundle.name}${bundle.version}/neard.conf..."/>
+      <copy file="${bundle.path}/neard.conf" tofile="${bundle.tmp.build.path}/${bundle.name}${bundle.version}/neard.conf" overwrite="true">
         <filterset>
           <filter token="RELEASE_VERSION" value="${bundle.release}"/>
         </filterset>
