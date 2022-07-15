@@ -91,6 +91,9 @@ Open a command prompt in your module folder and run the ant builder with  "ant r
 Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/issues ) repository with your files requesting a release or create a release on your fork and create a pr.
 <hr>
 
+### TS vs NTS
+After reviewing https://windows.php.net/download/ it appears TS ( thread safe ) builds are whats desired.
+
 ## License
 
 LGPL-3.0. See `LICENSE` for more details.<br />
