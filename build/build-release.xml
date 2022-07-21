@@ -60,7 +60,7 @@
       <not><equals arg1="${env.GITHUB_RUN_NUMBER}" arg2=""/></not>
     </and>
   </condition>
-  <property name="release.version" value="${release.default.version}-SNAPSHOT"/>
+  <property name="release.version" value="${release.default.version}.${release.release.type}"/>
   <loadresource property="release.fullversion">
     <propertyresource name="release.version"/>
     <filterchain>
