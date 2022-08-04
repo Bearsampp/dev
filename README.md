@@ -1,4 +1,4 @@
-<p align="center"><a href="https://bearsampp.com/contribute" target="_blank"><img width="" src="img/Bearsampp-logo.png"></a></p>
+<p align="center"><a href="https://bearsampp.com/contribute" target="_blank"><img width="" src="img/Bearsampp-logo.svg"></a></p>
 <p align="center">Bearsampp Development Kit</p>
 
 <p align="center">
