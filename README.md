@@ -96,4 +96,4 @@ After reviewing https://windows.php.net/download/ it appears TS ( thread safe ) 
 
 ## License
 
-LGPL-3.0. See `LICENSE` for more details.<br />
+GPL-3.0. See `LICENSE` for more details.<br />
