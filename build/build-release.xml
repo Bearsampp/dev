@@ -33,7 +33,7 @@
   <assertproperty property="app.phpmyadmin.version"/>
   <assertproperty property="app.phppgadmin.version"/>
   <assertproperty property="app.webgrind.version"/>
-  <assertproperty property="app.websvn.version"/>
+ <!-- <assertproperty property="app.websvn.version"/ -->
 
   <!-- Check tools version -->
   <assertproperty property="tool.composer.version"/>
