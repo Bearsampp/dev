@@ -24,7 +24,6 @@
   <assertproperty property="bin.nodejs.version"/>
   <assertproperty property="bin.php.version"/>
   <assertproperty property="bin.postgresql.version"/>
-  <assertproperty property="bin.svn.version"/>
 
   <!-- Check apps version -->
   <assertproperty property="app.adminer.version"/>
@@ -33,7 +32,6 @@
   <assertproperty property="app.phpmyadmin.version"/>
   <assertproperty property="app.phppgadmin.version"/>
   <assertproperty property="app.webgrind.version"/>
- <!-- <assertproperty property="app.websvn.version"/ -->
 
   <!-- Check tools version -->
   <assertproperty property="tool.composer.version"/>
