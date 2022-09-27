@@ -4,8 +4,8 @@
   <fail unless="project.basedir" message="Property 'project.basedir' must be set before loading build-bundle.xml"/>
   <fail unless="dev.path" message="Property 'dev.path' must be set before loading build-bundle.xml"/>
 
-  <property name="build-bundle.properties" value="${dev.path}/build/build-bundle.properties"/>
-  <echo message="Load build-bundle.properties: ${dev.path}/build/build-bundle.properties" level="debug"/>
+  <property name="build-bundle.properties" value="${dev.path}\build\build-bundle.properties"/>
+  <echo message="Load build-bundle.properties: ${dev.path}\build\build-bundle.properties" level="debug"/>
   <property file="${build-bundle.properties}"/>
 
   <!-- Import build-commons.xml -->
@@ -15,10 +15,10 @@
   <fail unless="bundle.type" message="Property 'bundle.type' must be set before loading build-bundle.xml"/>
 
   <!-- Properties -->
-  <property name="bundle.release.path" value="${build.path}/${bundle.type}"/>
-  <property name="bundle.tmp.build.path" value="${build.tmp.path}/bundles_build/${bundle.name}"/>
-  <property name="bundle.tmp.prep.path" value="${build.tmp.path}/bundles_prep/${bundle.name}"/>
-  <property name="bundle.tmp.src.path" value="${build.tmp.path}/bundles_src"/>
+  <property name="bundle.release.path" value="${build.path}\${bundle.type}"/>
+  <property name="bundle.tmp.build.path" value="${build.tmp.path}\bundles_build/${bundle.name}"/>
+  <property name="bundle.tmp.prep.path" value="${build.tmp.path}\bundles_prep/${bundle.name}"/>
+  <property name="bundle.tmp.src.path" value="${build.tmp.path}\bundles_src"/>
 
   <macrodef name="getmoduleuntouched">
     <attribute name="name"/>
@@ -95,8 +95,8 @@
       <var name="bundle.destfile" unset="true"/>
       <basename property="bundle.folder" file="${bundle.path}"/>
       <replaceproperty src="bundle.folder" dest="bundle.version" replace="${bundle.name}" with=""/>
-      <property name="bundle.destdir" value="${bundle.release.path}/${bundle.name}/${bundle.release}"/>
-      <property name="bundle.destfile" value="${bundle.destdir}/bearsampp-${bundle.name}-${bundle.version}-${bundle.release}"/>
+      <property name="bundle.destdir" value="${bundle.release.path}\${bundle.name}\${bundle.release}"/>
+      <property name="bundle.destfile" value="${bundle.destdir}\bearsampp-${bundle.name}-${bundle.version}-${bundle.release}"/>
 
       <echo message="*** Release bundle "/>
       <echo message="* Name    : ${bundle.name} "/>
@@ -106,31 +106,31 @@
       <echo message="* Format  : ${bundle.format} "/>
 
       <mkdir dir="${bundle.tmp.build.path}"/>
-      <delete dir="${bundle.tmp.build.path}/${bundle.name}${bundle.version}"/>
-      <copy todir="${bundle.tmp.build.path}/${bundle.name}${bundle.version}">
+      <delete dir="${bundle.tmp.build.path}\${bundle.name}${bundle.version}"/>
+      <copy todir="${bundle.tmp.build.path}\${bundle.name}${bundle.version}">
         <fileset dir="${bundle.path}" defaultexcludes="yes"/>
       </copy>
-      <echo message="Insert release version in ${bundle.tmp.build.path}/${bundle.name}${bundle.version}/bearsampp.conf..."/>
-      <copy file="${bundle.path}/bearsampp.conf" tofile="${bundle.tmp.build.path}/${bundle.name}${bundle.version}/bearsampp.conf" overwrite="true">
+      <echo message="Insert release version in ${bundle.tmp.build.path}\${bundle.name}${bundle.version}/bearsampp.conf..."/>
+      <copy file="${bundle.path}/bearsampp.conf" tofile="${bundle.tmp.build.path}\${bundle.name}${bundle.version}/bearsampp.conf" overwrite="true">
         <filterset>
           <filter token="RELEASE_VERSION" value="${bundle.release}"/>
         </filterset>
       </copy>
 
       <mkdir dir="${bundle.destdir}"/>
-      <mkdir dir="${bundle.release.path}/${bundle.name}"/>
+      <mkdir dir="${bundle.release.path}\${bundle.name}"/>
       <if>
         <equals arg1="${bundle.format}" arg2="7z"/>
         <then>
           <delete file="${bundle.destfile}.7z"/>
           <echo message="Compressing ${bundle.name}${bundle.version} to ${bundle.destfile}.7z..."/>
-          <sevenzip src="${bundle.tmp.build.path}/${bundle.name}${bundle.version}" dest="${bundle.destfile}.7z" format="7z"/>
+          <sevenzip src="${bundle.tmp.build.path}\${bundle.name}${bundle.version}" dest="${bundle.destfile}.7z" format="7z"/>
           <hashfile file="${bundle.destfile}.7z"/>
         </then>
         <else>
           <delete file="${bundle.destfile}.zip"/>
           <echo message="Compressing ${bundle.name}${bundle.version} to ${bundle.destfile}.zip..."/>
-          <sevenzip src="${bundle.tmp.build.path}/${bundle.name}${bundle.version}" dest="${bundle.destfile}.zip" format="zip"/>
+          <sevenzip src="${bundle.tmp.build.path}\${bundle.name}${bundle.version}" dest="${bundle.destfile}.zip" format="zip"/>
           <hashfile file="${bundle.destfile}.zip"/>
         </else>
       </if>
@@ -140,9 +140,9 @@
     <basename property="bundle.folder" file="${bundle.path}"/>
     <replaceproperty src="bundle.folder" dest="bundle.version" replace="${bundle.name}" with=""/>
 
-    <delete dir="${bundle.tmp.prep.path}/${bundle.folder}"/>
-    <mkdir dir="${bundle.tmp.prep.path}/${bundle.folder}"/>
-    <copy todir="${bundle.tmp.prep.path}/${bundle.folder}">
+    <delete dir="${bundle.tmp.prep.path}\${bundle.folder}"/>
+    <mkdir dir="${bundle.tmp.prep.path}\${bundle.folder}"/>
+    <copy todir="${bundle.tmp.prep.path}\${bundle.folder}">
       <fileset dir="${bundle.path}" defaultexcludes="yes"/>
     </copy>
   </target>
@@ -156,14 +156,14 @@
     </antcall>
 
     <if>
-      <available file="${bundle.tmp.prep.path}/${bundle.folder}" type="dir"/>
+      <available file="${bundle.tmp.prep.path}\${bundle.folder}" type="dir"/>
       <then>
         <antcall target="release.version">
-          <param name="bundle.path" value="${bundle.tmp.prep.path}/${bundle.folder}"/>
+          <param name="bundle.path" value="${bundle.tmp.prep.path}\${bundle.folder}"/>
         </antcall>
       </then>
       <else>
-        <fail message="Bundle folder not found in: ${bundle.tmp.prep.path}/${bundle.folder}"/>
+        <fail message="Bundle folder not found in: ${bundle.tmp.prep.path}\${bundle.folder}"/>
       </else>
     </if>
   </target>
@@ -174,14 +174,14 @@
       <equals arg1="${input.bundle}" arg2="*"/>
       <then>
         <foreach target="release.one" param="bundle.path">
-          <path><dirset dir="${project.basedir}/bin" includes="*"/></path>
+          <path><dirset dir="${project.basedir}\bin" includes="*"/></path>
         </foreach>
       </then>
       <elseif>
-        <available file="${project.basedir}/bin/${bundle.name}${input.bundle}" type="dir"/>
+        <available file="${project.basedir}\bin\${bundle.name}${input.bundle}" type="dir"/>
         <then>
           <antcall target="release.one">
-            <param name="bundle.path" value="${project.basedir}/bin/${bundle.name}${input.bundle}"/>
+            <param name="bundle.path" value="${project.basedir}\bin\${bundle.name}${input.bundle}"/>
           </antcall>
         </then>
       </elseif>
