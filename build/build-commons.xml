@@ -6,8 +6,8 @@
   <fail unless="project.basedir" message="Property 'project.basedir' must be set before loading build-commons.xml"/>
   <fail unless="dev.path" message="Property 'dev.path' must be set before loading build-commons.xml"/>
 
-  <property name="build-commons.properties" value="${dev.path}/build/build-commons.properties"/>
-  <echo message="Load build-commons.properties: ${dev.path}/build/build-commons.properties" level="debug"/>
+  <property name="build-commons.properties" value="${dev.path}\build\build-commons.properties"/>
+  <echo message="Load build-commons.properties: ${dev.path}\build\build-commons.properties" level="debug"/>
   <property file="${build-commons.properties}"/>
 
   <scriptdef name="randomstring" language="javascript">
@@ -103,7 +103,7 @@
   <macrodef name="hashfile">
     <attribute name="file"/>
     <sequential>
-      <var name="hashfile.tmp.path" value="${build.tmp.path}/hashfile"/>
+      <var name="hashfile.tmp.path" value="${build.tmp.path}\hashfile"/>
       <mkdir dir="${hashfile.tmp.path}"/>
       <var name="hashfile.filename" unset="true"/>
       <basename property="hashfile.filename" file="@{file}"/>
@@ -152,7 +152,7 @@
     <attribute name="version"/>
     <attribute name="dest"/>
     <sequential>
-      <var name="getm.tmp.path" value="${build.tmp.path}/getmodule"/>
+      <var name="getm.tmp.path" value="${build.tmp.path}\getmodule"/>
       <mkdir dir="${getm.tmp.path}"/>
 
       <echo message="** Get Module"/>
@@ -165,16 +165,16 @@
 
       <property url="@{releasesurl}"/>
       <basename property="getm.filename" file="${@{version}}"/>
-      <get dest="${getm.tmp.path}/${getm.filename}" src="${@{version}}" skipexisting="true"/>
+      <get dest="${getm.tmp.path}\${getm.filename}" src="${@{version}}" skipexisting="true"/>
 
       <echo message="Extracting ${getm.filename} to @{dest}..."/>
       <if>
         <matches string="${getm.filename}" pattern="7z$"/>
         <then>
-          <unsevenzip src="${getm.tmp.path}/${getm.filename}" dest="@{dest}"/>
+          <unsevenzip src="${getm.tmp.path}\${getm.filename}" dest="@{dest}"/>
         </then>
         <else>
-          <unzip src="${getm.tmp.path}/${getm.filename}" dest="@{dest}"/>
+          <unzip src="${getm.tmp.path}\${getm.filename}" dest="@{dest}"/>
         </else>
       </if>
     </sequential>
@@ -191,8 +191,8 @@
       <var name="download.extract" value="true"/>
       <basename property="download.filename" file="@{url}"/>
       <propertyregex property="download.basename" input="${download.filename}" regexp="(.*)\.(.*)" select="\1"/>
-      <var name="download.tmp.path" value="${build.tmp.path}/dl"/>
-      <var name="download.extract.path" value="${build.tmp.path}/extract/${download.basename}"/>
+      <var name="download.tmp.path" value="${build.tmp.path}\dl"/>
+      <var name="download.extract.path" value="${build.tmp.path}\extract/${download.basename}"/>
       <mkdir dir="${download.tmp.path}"/>
 
       <condition property="download.archive" value="true">
