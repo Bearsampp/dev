@@ -93,7 +93,7 @@ Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/is
 <hr>
 
 ### TS vs NTS
-After reviewing https://windows.php.net/download/ it appears TS ( thread safe ) builds are whats desired.
+Threadsafe x64 builds are what is required now.  These are vc16 currently.
 
 ## License
 
