@@ -74,7 +74,8 @@ If the folder does not exist it will be created during build time.
 # The build path (was default C:/bearsampp-build)
 build.path = ${project.basedir}/../bearsampp-build
 ```
-![image](https://user-images.githubusercontent.com/1850089/143039217-aae33c11-6a98-44f8-aa37-eb45153cfdf8.png)
+<img width="559" alt="image" src="https://user-images.githubusercontent.com/1850089/193386770-ac8fb32d-1396-436b-bc18-cfd7833793ab.png">
+
 
 
  <b>There is currently an issue where you have put the new release ( such as https://github.com/bearsampp/modules-untouched/releases/tag/git-2.34.0 ) into git and THEN modify
