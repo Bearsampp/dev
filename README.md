@@ -2,7 +2,7 @@
 <p align="center">Bearsampp Development Kit</p>
 
 <p align="center">
-  <a href="https://github.com/bearsampp/dev/tags"><img src="https://img.shields.io/github/tag/bearsampp/dev.svg?style=flat-square" alt="Tag"></a>
+  <a href="https://github.com/bearsampp/dev/tags"><img src="https://flat.badgen.net/github/tag/Bearsampp/dev" alt="Tag"></a>
   <a href="https://github.com/sponsors/N6REJ"><img src="https://img.shields.io/badge/sponsor-N6REJ-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
   <a href="https://www.paypal.me/BearLeeAble"><img src="https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square" alt="Donate Paypal"></a>
 </p>
