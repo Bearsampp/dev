@@ -18,7 +18,7 @@
   <assertproperty property="bin.apache.version"/>
   <assertproperty property="bin.filezilla.version"/>
   <assertproperty property="bin.mailhog.version"/>
-  <assertproperty property="bin.mariadb.version"/>
+  <assertproperty property="bin.maria.version"/>
   <assertproperty property="bin.memcached.version"/>
   <assertproperty property="bin.mysql.version"/>
   <assertproperty property="bin.nodejs.version"/>
