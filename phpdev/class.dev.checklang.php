@@ -6,7 +6,7 @@ class DevCheckLang
 
     private $bearsamppevBs;
 
-    public function __construct(DevBootstrap $bearsamppevBs, $args)
+    public function __construct(DevRoot $bearsamppevBs, $args)
     {
         $this->bearsamppevBs = $bearsamppevBs;
         $this->process();

@@ -1,6 +1,6 @@
 <?php
 
-class DevBootstrap
+class DevRoot
 {
     private $action;
 
@@ -12,7 +12,7 @@ class DevBootstrap
     public function __construct()
     {
         $this->bearsamppPath = DevUtils::formatUnixPath(realpath('../../bearsampp'));
-        if (!file_exists($this->bearsamppPath . '/core/bootstrap.php')) {
+        if (!file_exists($this->bearsamppPath . '/core/Root.php')) {
             throw new Exception("bearsampp repository not found in " . $this->bearsamppPath);
         }
 
