@@ -12,7 +12,7 @@ class DevRoot
     public function __construct()
     {
         $this->bearsamppPath = DevUtils::formatUnixPath(realpath('../../bearsampp'));
-        if (!file_exists($this->bearsamppPath . '/core/Root.php')) {
+        if (!file_exists($this->bearsamppPath . '/core/root.php')) {
             throw new Exception("bearsampp repository not found in " . $this->bearsamppPath);
         }
 
