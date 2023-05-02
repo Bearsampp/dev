@@ -299,14 +299,14 @@
         <equals arg1="@{returnProperty}" arg2=""/>
         <then>
           <exec executable="${tool.php.path}/php.exe" dir="@{workingdir}" failonerror="false">
-            <arg value="bootstrap.php"/>
+            <arg value="Root.php"/>
             <arg value="@{action}"/>
             <arg value="@{arg}"/>
           </exec>
         </then>
         <else>
           <exec executable="${tool.php.path}/php.exe" dir="@{workingdir}" outputproperty="@{returnProperty}" failonerror="false">
-            <arg value="bootstrap.php"/>
+            <arg value="Root.php"/>
             <arg value="@{action}"/>
             <arg value="@{arg}"/>
           </exec>
