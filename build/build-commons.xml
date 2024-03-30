@@ -64,7 +64,7 @@
             <arg value="@{src}"/>
             <arg value="-m0=LZMA2"/>
             <arg value="-mx9"/>
-            <arg value="-mmt8"/>
+            <arg value="-mmt6"/>
           </exec>
         </then>
         <elseif>
