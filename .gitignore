@@ -1,13 +1,6 @@
 # Jetbrains
 /*.iml
 /.idea
-/.idea/.gitignore
-/.idea/deployment.xml
-/.idea/discord.xml
-/.idea/module-perl.iml
-/.idea/modules.xml
-/.idea/php.xml
-/.idea/vcs.xml
 
 # Bearsampp
 /.dev
@@ -16,3 +9,6 @@
 .vscode/
 .vs/
 .vsc/
+
+# ignore "current" directories
+/**/current
