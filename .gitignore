@@ -12,3 +12,4 @@
 
 # ignore "current" directories
 /**/current
+.codiumai
