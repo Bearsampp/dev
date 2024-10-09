@@ -29,12 +29,12 @@
 
     <!-- Check apps version -->
     <assertproperty property="app.adminer.version"/>
-    <assertproperty property="app.bruno.version"/>
     <assertproperty property="app.phpmyadmin.version"/>
     <assertproperty property="app.phppgadmin.version"/>
     <assertproperty property="app.webgrind.version"/>
 
     <!-- Check tools version -->
+    <assertproperty property="tool.bruno.version"/>
     <assertproperty property="tool.composer.version"/>
     <assertproperty property="tool.consolez.version"/>
     <assertproperty property="tool.ghostscript.version"/>
