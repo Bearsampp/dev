@@ -1,19 +1,44 @@
 <?php
 
+/**
+ * Main application root and environment configuration handler
+ *
+ * Initializes core paths, validates environment setup, and routes CLI commands
+ * to appropriate action handlers. Follows the organization's strict path resolution
+ * patterns and dependency management conventions.
+ *
+ * @package BearsamppDev
+ * @license MIT
+ * @see DevUtils
+ * @throws RuntimeException If core repository structure is invalid
+ */
 class DevRoot
 {
-    private $action;
+    /** @var ?object Active command handler instance */
+    private ?object $action = null;
 
-    private $bearsamppPath;
-    private $corePath;
-    private $classesPath;
-    private $langsPath;
+    /** @var string Base path to bearsampp repository */
+    private string $bearsamppPath;
 
+    /** @var string Core module directory path */
+    private string $corePath;
+
+    /** @var string Class definitions directory */
+    private string $classesPath;
+
+    /** @var string Language files directory */
+    private string $langsPath;
+
+    /**
+     * Initializes core environment paths and validates repository structure
+     *
+     * @throws RuntimeException If required core files are missing
+     */
     public function __construct()
     {
         $this->bearsamppPath = DevUtils::formatUnixPath(realpath('../../bearsampp'));
         if (!file_exists($this->bearsamppPath . '/core/Root.php')) {
-            throw new Exception("bearsampp repository not found in " . $this->bearsamppPath);
+            throw new RuntimeException("Bearsampp repository not found in " . $this->bearsamppPath);
         }
 
         $this->corePath = $this->bearsamppPath . '/core';
@@ -21,21 +46,21 @@ class DevRoot
         $this->langsPath = $this->corePath . '/langs';
     }
 
-    public function process()
+    /**
+     * Processes CLI commands and delegates to action handlers
+     *
+     * Dynamically loads command classes based on CLI arguments following the pattern:
+     * class.dev.{action}.php ➔ Dev{Action} class
+     */
+    public function process(): void
     {
         if ($this->isActionExists()) {
-            $action = DevUtils::cleanArgv(1);
+            $action = DevUtils::cleanArgv(1, 'string');
             $actionFile = 'class.dev.' . $action . '.php';
             $actionClass = 'Dev' . ucfirst($action);
 
-            $args = array();
-            foreach ($_SERVER['argv'] as $key => $arg) {
-                if ($key > 1) {
-                    $args[] = $arg;
-                }
-            }
+            $args = array_slice($_SERVER['argv'], 2);
 
-            $this->action = null;
             if (file_exists($actionFile)) {
                 require_once $actionFile;
                 $this->action = new $actionClass($this, $args);
@@ -43,29 +68,52 @@ class DevRoot
         }
     }
 
-	private function isActionExists()
+    /**
+     * Checks for valid CLI action argument
+     *
+     * @return bool True if a non-empty action parameter exists in position 1
+     */
+    private function isActionExists(): bool
     {
-        return isset($_SERVER['argv'])
-            && isset($_SERVER['argv'][1])
-            && !empty($_SERVER['argv'][1]);
+        return isset($_SERVER['argv'][1]) && !empty($_SERVER['argv'][1]);
     }
 
-    public function getbearsamppPath()
+    /**
+     * Gets base application root path
+     *
+     * @return string Normalized Unix-style path to bearsampp repository
+     */
+    public function getbearsamppPath(): string
     {
         return $this->bearsamppPath;
     }
 
-    public function getCorePath()
+    /**
+     * Gets core module directory path
+     *
+     * @return string Path containing fundamental application components
+     */
+    public function getCorePath(): string
     {
         return $this->corePath;
     }
 
-    public function getClassesPath()
+    /**
+     * Gets class definitions directory
+     *
+     * @return string Path to application's class files
+     */
+    public function getClassesPath(): string
     {
         return $this->classesPath;
     }
 
-    public function getLangsPath()
+    /**
+     * Gets language resources directory
+     *
+     * @return string Path containing localization files
+     */
+    public function getLangsPath(): string
     {
         return $this->langsPath;
     }
