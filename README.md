@@ -95,6 +95,12 @@ Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/is
 ### TS vs NTS
 Threadsafe x64 builds are what is required now.  These are vc16 currently.
 
+### Phpstorm stubs
+<b>Updating the IDE</b>
+Make sure you have a full copy of the .github repo within a Jetbrains IDE and provide its path in
+ `Settings | Languages & Frameworks | PHP | PHP Runtime | Advanced settings | ` Select the `.github\.phpstorm-metadata` folder
+It should then be easily updatable both ways via normal git methods.
+
 ## License
 
 GPL-3.0. See `LICENSE` for more details.<br />
