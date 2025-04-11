@@ -96,10 +96,18 @@ Create an issue on my bearsampp fork ( https://github.com/bearsampp/bearsampp/is
 Threadsafe x64 builds are what is required now.  These are vc16 currently.
 
 ### Phpstorm stubs
-<b>Updating the IDE</b>
-Make sure you have a full copy of the .github repo within a Jetbrains IDE and provide its path in
- `Settings | Languages & Frameworks | PHP | PHP Runtime | Advanced settings | ` Select the `.github\.phpstorm-metadata` folder
+Make sure you have a full copy of the .github repo within the Jetbrains IDE and provide its path in
+
+ `Settings | Languages & Frameworks | PHP | PHP Runtime | Advanced settings | `
+ 
+Select the `.github\.phpstorm-metadata` folder
+
+As shown below
+![image](https://github.com/user-attachments/assets/2e08dac4-a8f0-40d2-8b2f-bd61d61e05ae)
+
 It should then be easily updatable both ways via normal git methods.
+
+Additional stubs can be found at https://github.com/JetBrains/phpstorm-stubs/tree/master
 
 ## License
 
