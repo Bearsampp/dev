@@ -12,3 +12,6 @@
 
 # ignore "current" directories
 /**/current
+
+# Qodo
+/.qodo
