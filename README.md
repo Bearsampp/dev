@@ -116,7 +116,7 @@ Additional stubs can be found at https://github.com/JetBrains/phpstorm-stubs/tre
 * [ln](https://schinagl.priv.at/nt/ln/ln.html)
 * [7zip](https://www.7-zip.org/download.html) Choose `7-Zip Extra: standalone console version, 7z DLL, Plugin for Far Manager`
 * [Hosts editor](https://www.sordum.org/) Choose `Bluelife Hosts editor`
-* [PwGen](https://github.com/cthoeing/passwordtech/releases) Choose `64bit .zip`
+* [PwGen](https://portableapps.com/apps/security/pwgen-portable) Choose `64bit .zip`
 * SetEnv is deprecated.
 * [Winbinder](https://github.com/crispy-computing-machine/Winbinder-Examples/tree/main/phpcode/include)
 
