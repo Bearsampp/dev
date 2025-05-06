@@ -109,6 +109,18 @@ It should then be easily updatable both ways via normal git methods.
 
 Additional stubs can be found at https://github.com/JetBrains/phpstorm-stubs/tree/master
 
+## Libraries
+* [Openssl](https://slproweb.com/products/Win32OpenSSL.html) use "universal lite" version.  run .exe and choose "Portable".  Copy files over.
+* [Php](http://php.net} use VS17 x64 TS for windows
+* [NSSM](https://nssm.cc/download)
+* [ln](https://schinagl.priv.at/nt/ln/ln.html)
+* [7zip](https://www.7-zip.org/download.html) Choose `7-Zip Extra: standalone console version, 7z DLL, Plugin for Far Manager`
+* [Hosts editor](https://www.sordum.org/) Choose `Bluelife Hosts editor`
+* [PwGen](https://github.com/cthoeing/passwordtech/releases) Choose `64bit .zip`
+* SetEnv is deprecated.
+* [Winbinder](https://github.com/crispy-computing-machine/Winbinder-Examples/tree/main/phpcode/include)
+
+
 ## License
 
 GPL-3.0. See `LICENSE` for more details.<br />
