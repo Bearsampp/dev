@@ -185,8 +185,17 @@
           </antcall>
         </then>
       </elseif>
+      <elseif>
+        <available file="${project.basedir}\bin\archived\${bundle.name}${input.bundle}" type="dir"/>
+        <then>
+          <echo message="Bundle version found in archived location: ${project.basedir}\bin\archived\${bundle.name}${input.bundle}"/>
+          <antcall target="release.one">
+            <param name="bundle.path" value="${project.basedir}\bin\archived\${bundle.name}${input.bundle}"/>
+          </antcall>
+        </then>
+      </elseif>
       <else>
-        <fail message="Invalid bundle's version for ${bundle.name}"/>
+        <fail message="Invalid bundle's version for ${bundle.name}. Checked both /bin/ and /bin/archived/ locations."/>
       </else>
     </if>
   </target>
