@@ -48,9 +48,9 @@ Create a new pull request with your work.
 For example :
 ```text
 cd C:\work\
-git clone --recursive https://github.com/bearsampp/module-adminer.git
+git clone --recursive https://github.com/bearsampp/module-php.git
 git clone --recursive https://github.com/bearsampp/dev.git
-cd module-adminer\
+cd module-php\
 ```
 
 

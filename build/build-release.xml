@@ -26,7 +26,6 @@
     <assertproperty property="bin.xlight.version"/>
 
     <!-- Check apps version -->
-    <assertproperty property="app.adminer.version"/>
     <assertproperty property="app.phpmyadmin.version"/>
     <assertproperty property="app.phppgadmin.version"/>
 
