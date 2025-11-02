@@ -57,6 +57,7 @@
       <if>
         <equals arg1="@{format}" arg2="7z"/>
         <then>
+          <echo message="Compressing with 7z format (optimized settings)..."/>
           <exec executable="${7za}" failonerror="true">
             <arg value="a"/>
             <arg value="-t7z"/>
@@ -64,20 +65,27 @@
             <arg value="@{src}"/>
             <arg value="-m0=LZMA2"/>
             <arg value="-mx9"/>
-            <arg value="-mmt6"/>
+            <arg value="-mmt"/>
+            <arg value="-md=256m"/>
+            <arg value="-ms=on"/>
+            <arg value="-mfb=273"/>
           </exec>
         </then>
         <elseif>
           <equals arg1="@{format}" arg2="zip"/>
           <then>
+            <echo message="Compressing with ZIP format (optimized settings)..."/>
             <exec executable="${7za}" failonerror="true">
               <arg value="a"/>
-              <arg value="-mm=Deflate"/>
-              <arg value="-mfb=258"/>
-              <arg value="-mpass=15"/>
-              <arg value="-r"/>
+              <arg value="-tzip"/>
               <arg value="@{dest}"/>
               <arg value="@{src}"/>
+              <arg value="-mm=Deflate"/>
+              <arg value="-mx9"/>
+              <arg value="-mfb=258"/>
+              <arg value="-mpass=15"/>
+              <arg value="-mmt"/>
+              <arg value="-r"/>
             </exec>
           </then>
         </elseif>
