@@ -18,3 +18,4 @@
 
 # Gradle Cache
 /.gradle
+/build/reports/
