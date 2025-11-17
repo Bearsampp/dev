@@ -6,14 +6,14 @@ This project uses a **Pure Gradle** build system with no Ant dependencies.
 
 All Gradle documentation has been moved to **`.gradle-docs/`** directory:
 
-- **[INDEX.md](.gradle-docs/INDEX.md)** - Documentation index and navigation
-- **[README.md](.gradle-docs/README.md)** - Overview and quick start
-- **[USAGE.md](.gradle-docs/USAGE.md)** - Complete usage guide
-- **[TASKS.md](.gradle-docs/TASKS.md)** - Detailed task reference
-- **[TROUBLESHOOTING.md](.gradle-docs/TROUBLESHOOTING.md)** - Common issues
-- **[INSTALLATION.md](.gradle-docs/INSTALLATION.md)** - Installation guide
+- **[INDEX.md](INDEX.md)** - Documentation index and navigation
+- **[README.md](README.md)** - Overview and quick start
+- **[USAGE.md](USAGE.md)** - Complete usage guide
+- **[TASKS.md](TASKS.md)** - Detailed task reference
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues
+- **[INSTALLATION.md](INSTALLATION.md)** - Installation guide
 - **[MIGRATION_FROM_ANT.md](.gradle-docs/MIGRATION_FROM_ANT.md)** - Migration notes
-- **[CONVERSION_SUMMARY.md](.gradle-docs/CONVERSION_SUMMARY.md)** - Conversion details
+- **[CONVERSION_SUMMARY.md](CONVERSION_SUMMARY.md)** - Conversion details
 
 ## 🚀 Quick Start
 
@@ -84,14 +84,14 @@ dev/
 
 ## 🆘 Getting Help
 
-1. **Read the docs:** Start with [.gradle-docs/INDEX.md](.gradle-docs/INDEX.md)
+1. **Read the docs:** Start with [.gradle-docs/INDEX.md](INDEX.md)
 2. **Run help commands:**
    ```powershell
    gradle tasks
    gradle info
    gradle help --task <taskname>
    ```
-3. **Check troubleshooting:** See [.gradle-docs/TROUBLESHOOTING.md](.gradle-docs/TROUBLESHOOTING.md)
+3. **Check troubleshooting:** See [.gradle-docs/TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ## 🔄 What Changed from Hybrid Build
 
@@ -103,7 +103,7 @@ This build has been converted from a hybrid Ant/Gradle build to pure Gradle:
 - ✅ **Improved:** Performance, maintainability, and documentation
 - ✅ **Maintained:** Same functionality and outputs
 
-For details, see [.gradle-docs/CONVERSION_SUMMARY.md](.gradle-docs/CONVERSION_SUMMARY.md)
+For details, see [.gradle-docs/CONVERSION_SUMMARY.md](CONVERSION_SUMMARY.md)
 
 ## 📝 Build Status
 
@@ -114,4 +114,4 @@ For details, see [.gradle-docs/CONVERSION_SUMMARY.md](.gradle-docs/CONVERSION_SU
 
 ---
 
-**Get started:** `gradle tasks` or read [.gradle-docs/README.md](.gradle-docs/README.md)
+**Get started:** `gradle tasks` or read [.gradle-docs/README.md](README.md)
