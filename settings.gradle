@@ -1,0 +1,21 @@
+/*
+ * Bearsampp Development Kit - Gradle Settings
+ * Pure Gradle Build (No Ant Dependencies)
+ */
+
+rootProject.name = 'bearsampp-dev'
+
+// Enable Gradle features
+enableFeaturePreview('STABLE_CONFIGURATION_CACHE')
+
+// Configure build cache for faster builds
+buildCache {
+    local {
+        enabled = true
+        directory = file("${rootDir}/.gradle/build-cache")
+        // Cache cleanup is automatic in Gradle 9.0+
+    }
+}
+
+// Configure Gradle daemon
+gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.INTERNAL_EXCEPTIONS

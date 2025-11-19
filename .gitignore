@@ -15,3 +15,12 @@
 
 # Qodo
 /.qodo
+
+# Gradle Cache
+/.gradle
+build
+
+# Gradle Wrapper (using system gradle)
+/gradle/
+gradlew
+gradlew.bat
