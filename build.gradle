@@ -181,7 +181,6 @@ tasks.register('loadLibs') {
     def innoextractUrl = project.findProperty('innoextract.url') ?: 'https://constexpr.org/innoextract/files/innoextract-1.9-windows.zip'
     def innosetupUrl = project.findProperty('innosetup.url') ?: 'https://files.jrsoftware.org/is/6/innosetup-6.2.2.exe'
     def hashmyfilesUrl = project.findProperty('hashmyfiles.url') ?: 'https://www.nirsoft.net/utils/hashmyfiles-x64.zip'
-    def lessmsiUrl = project.findProperty('lessmsi.url') ?: 'https://github.com/activescott/lessmsi/releases/download/v2.5.1/lessmsi-v2.5.1.zip'
 
     doLast {
         println "Downloading required libraries..."
@@ -205,11 +204,6 @@ tasks.register('loadLibs') {
             [
                 name: 'hashmyfiles',
                 url: hashmyfilesUrl,
-                extract: true
-            ],
-            [
-                name: 'lessmsi',
-                url: lessmsiUrl,
                 extract: true
             ]
         ]
@@ -365,8 +359,7 @@ tasks.register('verifyLibs') {
         def requiredLibs = [
             'composer.phar',
             'innoextract',
-            'hashmyfiles',
-            'lessmsi'
+            'hashmyfiles'
         ]
 
         def missing = []
