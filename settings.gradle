@@ -5,6 +5,10 @@
 
 rootProject.name = 'bearsampp-dev'
 
+// Include subprojects
+// Uncomment when prerequisite modules are ready
+// include 'modules:prerequisites'
+
 // Enable Gradle features
 enableFeaturePreview('STABLE_CONFIGURATION_CACHE')
 

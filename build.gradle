@@ -31,6 +31,12 @@ ext {
     toolsPath = file("${projectDir}/tools").absolutePath
     phpdevPath = file("${projectDir}/phpdev").absolutePath
     tmpPath = file("${buildPath}/tmp").absolutePath
+    
+    // Tool paths for prerequisite modules
+    innosetupPath = file("${libPath}/innosetup").absolutePath
+    innosetupCompiler = file("${libPath}/innosetup/ISCC.exe").absolutePath
+    innoextractPath = file("${libPath}/innoextract/innoextract.exe").absolutePath
+    composerPath = file("${libPath}/composer.phar").absolutePath
 }
 
 // Configure repositories for dependencies

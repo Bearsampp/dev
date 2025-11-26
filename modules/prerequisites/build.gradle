@@ -1,0 +1,167 @@
+/*
+ * Bearsampp Prerequisites Module - Gradle Build
+ * 
+ * This module builds prerequisite packages using InnoSetup
+ * and other tools provided by the parent dev project.
+ */
+
+plugins {
+    id 'base'
+}
+
+// Access parent project's tool paths
+def devPath = rootProject.ext.devPath
+def buildPath = rootProject.ext.buildPath
+def innosetupCompiler = rootProject.ext.innosetupCompiler
+def innosetupPath = rootProject.ext.innosetupPath
+def composerPath = rootProject.ext.composerPath
+
+// Module-specific paths
+ext {
+    modulePath = projectDir.absolutePath
+    moduleBuildPath = file("${buildPath}/prerequisites").absolutePath
+    moduleOutputPath = file("${moduleBuildPath}/output").absolutePath
+    moduleTmpPath = file("${moduleBuildPath}/tmp").absolutePath
+}
+
+// ============================================================================
+// SETUP TASKS
+// ============================================================================
+
+tasks.register('initModule') {
+    group = 'build setup'
+    description = 'Initialize prerequisites module directories'
+    
+    doLast {
+        mkdir(moduleBuildPath)
+        mkdir(moduleOutputPath)
+        mkdir(moduleTmpPath)
+        println "  [OK] Prerequisites module directories initialized"
+    }
+}
+
+// ============================================================================
+// BUILD TASKS
+// ============================================================================
+
+tasks.register('buildPrerequisites') {
+    group = 'build'
+    description = 'Build all prerequisite packages'
+    
+    dependsOn 'initModule'
+    
+    doLast {
+        println "Building prerequisites..."
+        
+        // Check if InnoSetup is available
+        def isccFile = file(innosetupCompiler)
+        if (!isccFile.exists()) {
+            throw new GradleException("InnoSetup compiler not found at: ${innosetupCompiler}\nRun 'gradle loadLibs' in the root project first.")
+        }
+        
+        println "  Using InnoSetup: ${innosetupCompiler}"
+        
+        // Find all .iss files in the module
+        fileTree(projectDir) {
+            include '**/*.iss'
+        }.each { issFile ->
+            println "  Compiling: ${issFile.name}"
+            
+            try {
+                def result = executeCommand("\"${innosetupCompiler}\" /O\"${moduleOutputPath}\" \"${issFile.absolutePath}\"")
+                
+                if (result.exitCode == 0) {
+                    println "    [OK] ${issFile.name} compiled successfully"
+                } else {
+                    println "    [X] Failed to compile ${issFile.name}"
+                    println "    Error: ${result.error}"
+                }
+            } catch (Exception e) {
+                println "    [X] Exception compiling ${issFile.name}: ${e.message}"
+            }
+        }
+        
+        println "[OK] Prerequisites build completed"
+    }
+}
+
+// ============================================================================
+// VERIFICATION TASKS
+// ============================================================================
+
+tasks.register('verifyTools') {
+    group = 'verification'
+    description = 'Verify that required tools are available'
+    
+    doLast {
+        println "Verifying tools for prerequisites module..."
+        
+        def checks = [:]
+        
+        // Check InnoSetup
+        checks['InnoSetup Compiler'] = file(innosetupCompiler).exists()
+        checks['InnoSetup Directory'] = file(innosetupPath).exists()
+        
+        // Check Composer
+        checks['Composer'] = file(composerPath).exists()
+        
+        println "\nTool Check Results:"
+        println "-".multiply(60)
+        checks.each { name, passed ->
+            def status = passed ? "[OK] PASS" : "[X] FAIL"
+            println "  ${status.padRight(12)} ${name}"
+        }
+        println "-".multiply(60)
+        
+        def allPassed = checks.values().every { it }
+        if (allPassed) {
+            println "\n[OK] All tools are available"
+        } else {
+            println "\n[!] Some tools are missing"
+            println "Run 'gradle loadLibs' in the root project to download required tools"
+        }
+    }
+}
+
+// ============================================================================
+// CLEAN TASKS
+// ============================================================================
+
+tasks.register('cleanModule') {
+    group = 'build'
+    description = 'Clean prerequisites module build artifacts'
+    
+    doLast {
+        delete moduleBuildPath
+        println "  [OK] Prerequisites module cleaned"
+    }
+}
+
+// ============================================================================
+// HELPER METHODS
+// ============================================================================
+
+// Execute shell command
+def executeCommand(String command, File workingDir = projectDir) {
+    def process = command.execute(null, workingDir)
+    def output = new StringBuilder()
+    def error = new StringBuilder()
+    
+    process.consumeProcessOutput(output, error)
+    process.waitFor()
+    
+    return [
+        exitCode: process.exitValue(),
+        output: output.toString(),
+        error: error.toString()
+    ]
+}
+
+// ============================================================================
+// DEFAULT TASK
+// ============================================================================
+
+// Make 'build' task depend on our custom build
+tasks.named('build') {
+    dependsOn 'buildPrerequisites'
+}
