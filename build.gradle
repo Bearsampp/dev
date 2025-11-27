@@ -31,6 +31,12 @@ ext {
     toolsPath = file("${projectDir}/tools").absolutePath
     phpdevPath = file("${projectDir}/phpdev").absolutePath
     tmpPath = file("${buildPath}/tmp").absolutePath
+    
+    // Tool paths for prerequisite modules
+    innosetupPath = file("${libPath}/innosetup").absolutePath
+    innosetupCompiler = file("${libPath}/innosetup/ISCC.exe").absolutePath
+    innoextractPath = file("${libPath}/innoextract/innoextract.exe").absolutePath
+    composerPath = file("${libPath}/composer.phar").absolutePath
 }
 
 // Configure repositories for dependencies
@@ -52,16 +58,22 @@ tasks.register('initDirs') {
     group = 'build setup'
     description = 'Initialize build directories'
 
+    // Capture values at configuration time
+    def binPathValue = project.ext.binPath
+    def libPathValue = project.ext.libPath
+    def buildPathValue = project.ext.buildPath
+    def tmpPathValue = project.ext.tmpPath
+
     doLast {
-        mkdir(ext.binPath)
-        mkdir(ext.libPath)
-        mkdir(ext.buildPath)
-        mkdir(ext.tmpPath)
-        println "✓ Build directories initialized"
-        println "  - Bin: ${ext.binPath}"
-        println "  - Lib: ${ext.libPath}"
-        println "  - Build: ${ext.buildPath}"
-        println "  - Tmp: ${ext.tmpPath}"
+        mkdir(binPathValue)
+        mkdir(libPathValue)
+        mkdir(buildPathValue)
+        mkdir(tmpPathValue)
+        println "  [OK] Build directories initialized"
+        println "    - Bin: ${binPathValue}"
+        println "    - Lib: ${libPathValue}"
+        println "    - Build: ${buildPathValue}"
+        println "    - Tmp: ${tmpPathValue}"
     }
 }
 
@@ -77,7 +89,7 @@ tasks.named('clean') {
             include '**/*.tmp'
             include '**/*.log'
         }
-        println "✓ Build artifacts cleaned"
+        println "[OK] Build artifacts cleaned"
     }
 }
 
@@ -163,35 +175,42 @@ tasks.register('loadLibs') {
 
     dependsOn 'initDirs'
 
+    // Capture values at configuration time
+    def libPathValue = project.ext.libPath
+    def composerUrl = project.findProperty('composer.url') ?: 'https://github.com/composer/composer/releases/download/2.8.5/composer.phar'
+    def innoextractUrl = project.findProperty('innoextract.url') ?: 'https://constexpr.org/innoextract/files/innoextract-1.9-windows.zip'
+    def innosetupUrl = project.findProperty('innosetup.url') ?: 'https://files.jrsoftware.org/is/6/innosetup-6.2.2.exe'
+    def hashmyfilesUrl = project.findProperty('hashmyfiles.url') ?: 'https://www.nirsoft.net/utils/hashmyfiles-x64.zip'
+
     doLast {
         println "Downloading required libraries..."
 
         def libs = [
             [
                 name: 'composer',
-                url: 'https://github.com/composer/composer/releases/download/2.8.5/composer.phar',
+                url: composerUrl,
                 extract: false
             ],
             [
                 name: 'innoextract',
-                url: 'https://github.com/dscharrer/innoextract/releases/download/1.9/innoextract-1.9-windows.zip',
+                url: innoextractUrl,
                 extract: true
+            ],
+            [
+                name: 'innosetup',
+                url: innosetupUrl,
+                extract: false
             ],
             [
                 name: 'hashmyfiles',
-                url: 'https://www.nirsoft.net/utils/hashmyfiles-x64.zip',
-                extract: true
-            ],
-            [
-                name: 'lessmsi',
-                url: 'https://github.com/activescott/lessmsi/releases/download/v2.5.1/lessmsi-v2.5.1.zip',
+                url: hashmyfilesUrl,
                 extract: true
             ]
         ]
 
         libs.each { lib ->
             def fileName = lib.url.substring(lib.url.lastIndexOf('/') + 1)
-            def destFile = file("${ext.libPath}/${fileName}")
+            def destFile = file("${libPathValue}/${fileName}")
 
             if (!destFile.exists()) {
                 println "  Downloading ${lib.name}..."
@@ -201,40 +220,75 @@ tasks.register('loadLibs') {
                             output << input
                         }
                     }
-                    println "  ✓ ${lib.name} downloaded"
+                    println "    [OK] ${lib.name} downloaded"
 
                     // Extract archives
                     if (lib.extract && fileName.endsWith('.zip')) {
-                        def extractDir = file("${ext.libPath}/${lib.name}")
+                        def extractDir = file("${libPathValue}/${lib.name}")
                         if (!extractDir.exists()) {
                             println "  Extracting ${fileName}..."
                             copy {
                                 from zipTree(destFile)
                                 into extractDir
                             }
-                            println "  ✓ ${lib.name} extracted"
+                            println "    [OK] ${lib.name} extracted"
                         }
                     }
                 } catch (Exception e) {
-                    println "  ✗ Failed to download ${lib.name}: ${e.message}"
+                    println "    [X] Failed to download ${lib.name}: ${e.message}"
                 }
             } else {
-                println "  ✓ ${lib.name} already exists"
+                println "    [OK] ${lib.name} already exists"
             }
         }
 
-        println "✓ All libraries processed"
+        // Extract InnoSetup using innoextract
+        def innosetupExe = file("${libPathValue}/innosetup-6.2.2.exe")
+        def innosetupDir = file("${libPathValue}/innosetup")
+        def innoextractExe = file("${libPathValue}/innoextract/innoextract.exe")
+
+        if (innosetupExe.exists() && !innosetupDir.exists() && innoextractExe.exists()) {
+            println "  Extracting InnoSetup using innoextract..."
+            try {
+                def result = executeCommand("\"${innoextractExe.absolutePath}\" -e -d \"${libPathValue}\" \"${innosetupExe.absolutePath}\"")
+                if (result.exitCode == 0) {
+                    def extractedDir = file("${libPathValue}/app")
+                    if (extractedDir.exists()) {
+                        extractedDir.renameTo(innosetupDir)
+                        println "    [OK] InnoSetup extracted"
+                    } else {
+                        println "    [OK] InnoSetup extracted (check directory structure)"
+                    }
+                } else {
+                    println "    [X] Failed to extract InnoSetup: ${result.error}"
+                }
+            } catch (Exception e) {
+                println "    [X] Failed to extract InnoSetup: ${e.message}"
+            }
+        } else if (innosetupDir.exists()) {
+            println "    [OK] InnoSetup already extracted"
+        } else if (!innoextractExe.exists()) {
+            println "    [!] innoextract not found, cannot extract InnoSetup"
+        }
+
+        println "[OK] All libraries processed"
     }
 }
 
 // Task: Clean libraries
 tasks.register('cleanLibs') {
     group = 'build setup'
-    description = 'Remove downloaded libraries'
+    description = 'Remove downloaded libraries and re-download them'
+
+    finalizedBy 'loadLibs'
+
+    // Capture values at configuration time
+    def libPathValue = project.ext.libPath
 
     doLast {
-        delete file(ext.libPath)
-        println "✓ Libraries cleaned"
+        delete file(libPathValue)
+        println "  [OK] Libraries cleaned"
+        println "    Re-downloading libraries..."
     }
 }
 
@@ -276,15 +330,15 @@ tasks.register('verify') {
         println "\nEnvironment Check Results:"
         println "─".multiply(60)
         checks.each { name, passed ->
-            def status = passed ? "✓ PASS" : "✗ FAIL"
-            def icon = passed ? "✓" : "✗"
+            def status = passed ? "[OK] PASS" : "✗ FAIL"
+            def icon = passed ? "[OK]" : "✗"
             println "  ${status.padRight(10)} ${name}"
         }
         println "─".multiply(60)
 
         def allPassed = checks.values().every { it }
         if (allPassed) {
-            println "\n✓ All checks passed! Build environment is ready."
+            println "\n[OK] All checks passed! Build environment is ready."
         } else {
             println "\n⚠ Some checks failed. Please review the requirements."
             println "\nTo fix missing components:"
@@ -305,15 +359,14 @@ tasks.register('verifyLibs') {
         def requiredLibs = [
             'composer.phar',
             'innoextract',
-            'hashmyfiles',
-            'lessmsi'
+            'hashmyfiles'
         ]
 
         def missing = []
         requiredLibs.each { lib ->
             def libFile = file("${ext.libPath}/${lib}")
             if (libFile.exists()) {
-                println "  ✓ ${lib}"
+                println "  [OK] ${lib}"
             } else {
                 println "  ✗ ${lib} (missing)"
                 missing.add(lib)
@@ -321,7 +374,7 @@ tasks.register('verifyLibs') {
         }
 
         if (missing.isEmpty()) {
-            println "\n✓ All required libraries are present"
+            println "\n[OK] All required libraries are present"
         } else {
             println "\n⚠ Missing libraries: ${missing.join(', ')}"
             println "Run 'gradle loadLibs' to download missing libraries"
@@ -348,7 +401,7 @@ tasks.register('buildProject') {
         println "  - Processing configuration files..."
         println "  - Preparing distribution files..."
         
-        println "✓ Build completed successfully"
+        println "[OK] Build completed successfully"
     }
 }
 
@@ -385,10 +438,10 @@ tasks.register('hashAll') {
             hashFile.append("${file.name}\n")
             hashFile.append("  MD5:    ${md5}\n")
             hashFile.append("  SHA256: ${sha256}\n\n")
-            println "  ✓ ${file.name}"
+            println "  [OK] ${file.name}"
         }
 
-        println "✓ Hash files generated: ${hashFile.absolutePath}"
+        println "[OK] Hash files generated: ${hashFile.absolutePath}"
     }
 }
 
@@ -435,7 +488,7 @@ tasks.register('packageDist') {
             }
         }
 
-        println "✓ Distribution packaged: ${distFile.name}"
+        println "[OK] Distribution packaged: ${distFile.name}"
         println "  Size: ${String.format('%.2f MB', distFile.length() / 1024 / 1024)}"
     }
 }
@@ -540,9 +593,9 @@ def executeCommand(String command, File workingDir = projectDir) {
 // This is compatible with configuration cache
 gradle.taskGraph.whenReady { graph ->
     println """
-    ╔══════════════════════════════════════════════════════════��═════╗
-    ║  Bearsampp Build - Pure Gradle                                 ║
-    ║  Version: ${project.version.padRight(52)}║
-    ╚════════════════════════════════════════════════════════════════╝
+    ================================================================
+      Bearsampp Build - Pure Gradle
+      Version: ${project.version}
+    ================================================================
     """.stripIndent()
 }
